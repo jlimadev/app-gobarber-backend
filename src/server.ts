@@ -1,4 +1,6 @@
 import express from 'express';
+import routes from './routes';
+
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -9,10 +11,10 @@ app.post('/users', (request, response) => {
   const { name, email } = request.body;
   const user = {
     name,
-    email
-  }
+    email,
+  };
 
-  return response.json(user)
+  return response.json(user);
 });
 
 app.listen(PORT, () => {
