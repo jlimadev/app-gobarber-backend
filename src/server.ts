@@ -1,22 +1,13 @@
 import express from 'express';
 import routes from './routes';
 
-const PORT = process.env.PORT || 3000;
-
 const app = express();
 
 app.use(express.json());
+app.use(routes);
 
-app.post('/users', (request, response) => {
-  const { name, email } = request.body;
-  const user = {
-    name,
-    email,
-  };
-
-  return response.json(user);
-});
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`👨‍💻 Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}`);
 });
