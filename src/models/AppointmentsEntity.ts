@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-class Appointment {
+class AppointmentsEntity {
   id?: string;
 
   provider: string;
@@ -14,4 +14,4 @@ class Appointment {
   }
 }
 
-export default Appointment;
+export default AppointmentsEntity;
