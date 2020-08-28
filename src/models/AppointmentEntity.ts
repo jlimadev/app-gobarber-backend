@@ -6,7 +6,7 @@ class AppointmentEntity {
   id: string;
 
   @Column()
-  provider: string;
+  provider_id: string;
 
   @Column('time with time zone')
   date: Date;
