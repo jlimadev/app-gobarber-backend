@@ -20,6 +20,8 @@
     ],
     "rules": {
       "linebreak-style": 0,
+      "class-methods-use-this": "off",
+      "camelcase": "off",
 	   	"import/extensions": [
 	      "error",
 	      "ignorePackages",
@@ -29,8 +31,7 @@
       ],
       "prettier/prettier": ["error", {
        "endOfLine":"auto"
-     }],
-     "class-methods-use-this": "off"
+     }]
 	  },
 	  "settings": {
 	    "import/resolver": {
