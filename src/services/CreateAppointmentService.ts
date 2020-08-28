@@ -1,6 +1,6 @@
-import AppointmentEntity from '../models/AppointmentEntity';
-import { getCustomRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
+import AppointmentEntity from '../models/AppointmentEntity';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
 interface RequestDTO {
@@ -9,13 +9,17 @@ interface RequestDTO {
 }
 
 class CreateAppointmentService {
-  public async execute({ provider_id, date }: RequestDTO): Promise<AppointmentEntity> {
+  public async execute({
+    provider_id,
+    date,
+  }: RequestDTO): Promise<AppointmentEntity> {
     const appointmentsRepository = getCustomRepository(AppointmentsRepository);
 
     const appointmentDate = startOfHour(date);
-    
 
-    const appointmentExists = await appointmentsRepository.findByDate(appointmentDate);
+    const appointmentExists = await appointmentsRepository.findByDate(
+      appointmentDate,
+    );
 
     if (appointmentExists) {
       throw Error('This appointment is already booked');
