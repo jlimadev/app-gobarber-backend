@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import UserEntity from '../models/UserEntity';
+import AppError from '../errors/AppError';
 
 interface RequestDTO {
   name: string;
@@ -20,7 +21,7 @@ class CreateUserService {
     });
 
     if (checkUserExists) {
-      throw new Error('This e-mail is already in use.');
+      throw new AppError('This e-mail is already in use.');
     }
 
     const user = usersRepository.create({
