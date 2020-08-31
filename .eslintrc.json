@@ -22,6 +22,9 @@
       "linebreak-style": 0,
       "class-methods-use-this": "off",
       "camelcase": "off",
+      "@typescript-eslint/no-unused-vars": ["error", {
+        "argsIgnorePattern": "_"
+      }],
 	   	"import/extensions": [
 	      "error",
 	      "ignorePackages",
@@ -30,7 +33,7 @@
 	      }
       ],
       "prettier/prettier": ["error", {
-       "endOfLine":"auto"
+      "endOfLine":"auto"
      }]
 	  },
 	  "settings": {
