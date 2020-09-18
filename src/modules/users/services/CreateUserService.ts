@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm';
-import UserEntity from '../models/UserEntity';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
 
 interface RequestDTO {
   name: string;
