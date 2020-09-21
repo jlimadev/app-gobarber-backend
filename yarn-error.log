@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev:server
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @types/tsyringe
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\t77rvt8\bin;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\PROGRA~1\IBM\SQLLIB\BIN;C:\PROGRA~1\IBM\SQLLIB\FUNCTION;C:\PROGRA~1\IBM\SQLLIB\SAMPLES\REPL;C:\Program Files\CrashPlan\jre\bin\server;C:\Program Files\CrashPlan\jre\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_31\bin;C:\Users\t77rvt8\Anaconda3;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Plantronics\Spokes3G;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\nvm;C:\Program Files\nodejs;C:\Android\SDK\emulator;C:\Android\SDK\tools;C:\Android\SDK\tools\bin;C:\Android\SDK\platform-tools;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\t77rvt8\AppData\Local\Microsoft\WindowsApps;C:\Users\t77rvt8\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\t77rvt8\AppData\Roaming\npm;C:\Users\t77rvt8\AppData\Local\Yarn\bin;C:\Users\t77rvt8\AppData\Local\hyper\app-3.0.2\resources\bin
@@ -14,12 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\t77rvt8\Sources\gostack\back-end\app-gobarber-backend\package.json: Unexpected token } in JSON at position 433
-      at JSON.parse (<anonymous>)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
-      at Generator.next (<anonymous>)
-      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
-      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
+  Error: https://registry.yarnpkg.com/@types%2ftsyringe: Not found
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1220:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -31,7 +36,7 @@ npm manifest:
       "build": "tsc",
       "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
       "start": "ts-node-dev src/shared/infra/http/server.ts",
-      "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+      "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
     },
     "dependencies": {
       "bcryptjs": "^2.4.3",
@@ -44,6 +49,7 @@ npm manifest:
       "multer": "^1.4.2",
       "pg": "^8.3.3",
       "reflect-metadata": "^0.1.13",
+      "tsyringe": "^4.3.0",
       "typeorm": "^0.2.25",
       "uuid": "^8.3.0"
     },
@@ -2826,7 +2832,7 @@ Lockfile:
       strip-bom "^3.0.0"
       strip-json-comments "^2.0.0"
   
-  tslib@^1.8.1, tslib@^1.9.0:
+  tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
     version "1.13.0"
     resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
     integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
@@ -2837,6 +2843,13 @@ Lockfile:
     integrity sha512-kzeQ5B8H3w60nFY2g8cJIuH7JDpsALXySGtwGJ0p2LSjLgay3NdIpqq5SoOBe46bKDW2iq25irHCr8wjomUS2g==
     dependencies:
       tslib "^1.8.1"
+  
+  tsyringe@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/tsyringe/-/tsyringe-4.3.0.tgz#50ce2ec56c83569a2dfafb7233a5265a2a10bde4"
+    integrity sha512-Vzty1M/EQXSsEE8aoIOLl1l793chcPyQAnFJaS1mFDtFvNPY+jknSPwMIF6yfcjua+2GTgwxWFzuA3cjIx4NZA==
+    dependencies:
+      tslib "^1.9.3"
   
   type-check@~0.3.2:
     version "0.3.2"

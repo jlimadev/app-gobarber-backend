@@ -1,6 +1,7 @@
 import authConfig from '@config/auth';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
 import AppError from '@shared/errors/AppError';
+import { injectable, inject } from 'tsyringe';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -15,8 +16,12 @@ interface IResponseDTO {
   token: string;
 }
 
+@injectable()
 class AuthenticateUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
 
   public async execute({
     email,

@@ -1,10 +1,15 @@
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
 import AppError from '@shared/errors/AppError';
+import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 
+@injectable()
 class CreateUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
 
   public async execute({
     name,
