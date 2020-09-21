@@ -1,35 +1,27 @@
-import { getRepository } from 'typeorm';
-import AppError from '@shared/errors/AppError';
+import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
-
-interface RequestDTO {
-  name: string;
-  email: string;
-  password: string;
-}
+import AppError from '@shared/errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 class CreateUserService {
+  constructor(private usersRepository: IUsersRepository) {}
+
   public async execute({
     name,
     email,
     password,
-  }: RequestDTO): Promise<UserEntity> {
-    const usersRepository = getRepository(UserEntity);
-
-    const checkUserExists = await usersRepository.findOne({
-      where: { email },
-    });
+  }: ICreateUserDTO): Promise<UserEntity> {
+    const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
       throw new AppError('This e-mail is already in use.');
     }
 
-    const user = usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       password,
     });
-    await usersRepository.save(user);
 
     return user;
   }
