@@ -1,9 +1,7 @@
-import uploadConfig from '@config/upload';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProviders';
 import AppError from '@shared/errors/AppError';
-import fs from 'fs';
-import path from 'path';
-import { injectable, inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequestDTO {
@@ -16,6 +14,9 @@ class UpdateUserAvatarService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -32,14 +33,12 @@ class UpdateUserAvatarService {
     }
 
     if (user.avatar) {
-      const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
-      const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
-
-      if (userAvatarFileExists) {
-        await fs.promises.unlink(userAvatarFilePath);
-      }
+      await this.storageProvider.deleteFile(user.avatar);
     }
-    user.avatar = avatarFilename;
+
+    const fileName = await this.storageProvider.saveFile(avatarFilename);
+
+    user.avatar = fileName;
 
     await this.usersRepository.save(user);
 
