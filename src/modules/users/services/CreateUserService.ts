@@ -1,6 +1,7 @@
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
 import AppError from '@shared/errors/AppError';
+import { hash } from 'bcryptjs';
 import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 
@@ -22,10 +23,12 @@ class CreateUserService {
       throw new AppError('This e-mail is already in use.');
     }
 
+    const hashedPassword = await hash(password, 8);
+
     const user = await this.usersRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
     return user;
