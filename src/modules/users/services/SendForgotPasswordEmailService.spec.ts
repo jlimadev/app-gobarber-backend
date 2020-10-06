@@ -17,8 +17,8 @@ describe('SendForgotPasswordEmail', () => {
 
     sendForgotPasswordEmail = new SendForgotPasswordEmailService(
       fakeUsersRepository,
-      fakeUserTokensRepository,
       fakeMailProvider,
+      fakeUserTokensRepository,
     );
   });
 
