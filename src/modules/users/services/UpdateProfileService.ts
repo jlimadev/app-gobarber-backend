@@ -1,5 +1,4 @@
 import AppError from '@shared/errors/AppError';
-import { log } from 'handlebars';
 import { inject, injectable } from 'tsyringe';
 import UserEntity from '../infra/typeorm/entities/UserEntity';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
@@ -31,6 +30,7 @@ class UpdateProfileService {
     password,
   }: IRequestDTO): Promise<UserEntity> {
     const user = await this.usersRepository.findById(userId);
+    console.log(user);
 
     if (!user) {
       throw new AppError('User not found');
