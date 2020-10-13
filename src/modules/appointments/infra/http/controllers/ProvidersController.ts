@@ -8,8 +8,6 @@ class ProvidersController {
 
     const listProviders = container.resolve(listProvidersService);
 
-    console.log('here!');
-
     const appointment = await listProviders.execute({
       userId,
     });
