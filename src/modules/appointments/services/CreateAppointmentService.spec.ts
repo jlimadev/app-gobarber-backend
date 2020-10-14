@@ -12,7 +12,7 @@ describe('CreateAppointment', () => {
       fakeAppointmentsRepository,
     );
 
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
+    jest.spyOn(Date, 'now').mockImplementation(() => {
       return new Date(2020, 4, 10, 12).getTime();
     });
   });
@@ -57,7 +57,7 @@ describe('CreateAppointment', () => {
   it('Should not be able to create an appointment with the same user as provider', async () => {
     await expect(
       createAppointment.execute({
-        date: new Date(2020, 4, 10, 11),
+        date: new Date(2020, 4, 10, 13),
         provider_id: 'anyEqualId',
         user_id: 'anyEqualId',
       }),
