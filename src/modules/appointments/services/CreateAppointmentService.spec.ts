@@ -11,12 +11,12 @@ describe('CreateAppointment', () => {
     createAppointment = new CreateAppointmentService(
       fakeAppointmentsRepository,
     );
-  });
-  it('Should be able to create a new appointment', async () => {
+
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       return new Date(2020, 4, 10, 12).getTime();
     });
-
+  });
+  it('Should be able to create a new appointment', async () => {
     const appointment = await createAppointment.execute({
       date: new Date(2020, 4, 10, 13),
       provider_id: 'anyProviderId',
@@ -29,10 +29,6 @@ describe('CreateAppointment', () => {
   });
 
   it('Should not be able to create two appointments with same date/time', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, 4, 10, 12).getTime();
-    });
-
     await createAppointment.execute({
       date: new Date(2020, 4, 10, 13),
       provider_id: 'anyProviderId',
@@ -49,10 +45,6 @@ describe('CreateAppointment', () => {
   });
 
   it('Should not be able to create a new appointment in a past date', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, 4, 10, 12).getTime();
-    });
-
     await expect(
       createAppointment.execute({
         date: new Date(2020, 4, 10, 11),
@@ -62,16 +54,12 @@ describe('CreateAppointment', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it('Should not be able to create a new appointment in a past date', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, 4, 10, 12).getTime();
-    });
-
+  it('Should not be able to create an appointment with the same user as provider', async () => {
     await expect(
       createAppointment.execute({
         date: new Date(2020, 4, 10, 11),
-        provider_id: 'anyProviderId',
-        user_id: 'anyUserId',
+        provider_id: 'anyEqualId',
+        user_id: 'anyEqualId',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

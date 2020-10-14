@@ -28,6 +28,12 @@ class CreateAppointmentService {
       throw new AppError('You cannot book in a past date');
     }
 
+    if (user_id === provider_id) {
+      throw new AppError(
+        'You cannot book with yourself! Please chose another provider',
+      );
+    }
+
     const appointmentExists = await this.appointmentsRepository.findByDate(
       appointmentDate,
     );
