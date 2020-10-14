@@ -5,7 +5,8 @@ import AppError from '@shared/errors/AppError';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequestDTO {
-  providerId: string;
+  provider_id: string;
+  user_id: string;
   date: Date;
 }
 
@@ -17,7 +18,8 @@ class CreateAppointmentService {
   ) {}
 
   public async execute({
-    providerId,
+    provider_id,
+    user_id,
     date,
   }: IRequestDTO): Promise<AppointmentEntity> {
     const appointmentDate = startOfHour(date);
@@ -31,7 +33,8 @@ class CreateAppointmentService {
     }
 
     const appointment = await this.appointmentsRepository.create({
-      providerId,
+      provider_id,
+      user_id,
       date: appointmentDate,
     });
 

@@ -4,7 +4,7 @@ import UserEntity from '../infra/typeorm/entities/UserEntity';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequestDTO {
-  userId: string;
+  user_id: string;
 }
 
 @injectable()
@@ -14,8 +14,8 @@ class ShowProfileService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ userId }: IRequestDTO): Promise<UserEntity> {
-    const user = await this.usersRepository.findById(userId);
+  public async execute({ user_id }: IRequestDTO): Promise<UserEntity> {
+    const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError('User not found');

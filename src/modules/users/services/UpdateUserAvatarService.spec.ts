@@ -26,7 +26,7 @@ describe('UpdateUserAvatar', () => {
     });
 
     await updateUserAvatar.execute({
-      userId: user.id,
+      user_id: user.id,
       avatarFilename: 'anyfile.jpg',
     });
 
@@ -36,7 +36,7 @@ describe('UpdateUserAvatar', () => {
   it('Should not be able to upload when is not authenticated', async () => {
     try {
       await updateUserAvatar.execute({
-        userId: 'anyInvalidId',
+        user_id: 'anyInvalidId',
         avatarFilename: 'anyfile.jpg',
       });
     } catch (error) {
@@ -57,12 +57,12 @@ describe('UpdateUserAvatar', () => {
     });
 
     await updateUserAvatar.execute({
-      userId: user.id,
+      user_id: user.id,
       avatarFilename: 'anyfile.jpg',
     });
 
     await updateUserAvatar.execute({
-      userId: user.id,
+      user_id: user.id,
       avatarFilename: 'anyNewfile.jpg',
     });
 

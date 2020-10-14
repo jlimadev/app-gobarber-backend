@@ -27,7 +27,7 @@ describe('UpdateProfile', () => {
     });
 
     const updatedUser = await updateProfile.execute({
-      userId: id,
+      user_id: id,
       name: 'any new name',
       email: 'anynew@mail.com',
     });
@@ -38,7 +38,7 @@ describe('UpdateProfile', () => {
   it('Should not be able to update the profile of a non existing user', async () => {
     await expect(
       updateProfile.execute({
-        userId: 'anyInvalidId',
+        user_id: 'anyInvalidId',
         name: 'anyName',
         email: 'any@email.com',
       }),
@@ -60,7 +60,7 @@ describe('UpdateProfile', () => {
 
     await expect(
       updateProfile.execute({
-        userId: id,
+        user_id: id,
         name: 'any new name',
         email: 'any2@email.com',
       }),
@@ -75,7 +75,7 @@ describe('UpdateProfile', () => {
     });
 
     const updatedUser = await updateProfile.execute({
-      userId: id,
+      user_id: id,
       name: 'any new name',
       email: 'anynew@mail.com',
       oldPassword: 'anypassword',
@@ -94,7 +94,7 @@ describe('UpdateProfile', () => {
 
     await expect(
       updateProfile.execute({
-        userId: id,
+        user_id: id,
         name: 'any new name',
         email: 'anynew@mail.com',
         password: 'anyNewPassword',
@@ -111,7 +111,7 @@ describe('UpdateProfile', () => {
 
     await expect(
       updateProfile.execute({
-        userId: id,
+        user_id: id,
         name: 'any new name',
         email: 'anynew@mail.com',
         oldPassword: 'wrong-old-password',

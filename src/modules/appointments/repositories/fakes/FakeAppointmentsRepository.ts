@@ -18,14 +18,14 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   public async findAllInDayFromProvider({
-    providerId,
+    provider_id,
     day,
     month,
     year,
   }: IFindAllInDayFromProviderDTO): Promise<AppointmentEntity[]> {
     const appointments = this.appointments.filter(
       appointment =>
-        appointment.providerId === providerId &&
+        appointment.provider_id === provider_id &&
         getDate(appointment.date) === day &&
         getMonth(appointment.date) + 1 === month &&
         getYear(appointment.date) === year,
@@ -35,13 +35,13 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   public async findAllInMonthFromProvider({
-    providerId,
+    provider_id,
     month,
     year,
   }: IFindAllInMonthFromProviderDTO): Promise<AppointmentEntity[]> {
     const appointments = this.appointments.filter(
       appointment =>
-        appointment.providerId === providerId &&
+        appointment.provider_id === provider_id &&
         getMonth(appointment.date) + 1 === month &&
         getYear(appointment.date) === year,
     );
@@ -50,12 +50,13 @@ class AppointmentsRepository implements IAppointmentsRepository {
   }
 
   public async create({
-    providerId,
+    provider_id,
+    user_id,
     date,
   }: ICreateAppointmentDTO): Promise<AppointmentEntity> {
     const appointment = new AppointmentEntity();
 
-    Object.assign(appointment, { id: uuidv4(), date, providerId });
+    Object.assign(appointment, { id: uuidv4(), date, provider_id, user_id });
 
     this.appointments.push(appointment);
 

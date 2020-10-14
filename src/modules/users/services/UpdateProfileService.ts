@@ -5,7 +5,7 @@ import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequestDTO {
-  userId: string;
+  user_id: string;
   name: string;
   email: string;
   oldPassword?: string;
@@ -23,13 +23,13 @@ class UpdateProfileService {
   ) {}
 
   public async execute({
-    userId,
+    user_id,
     name,
     email,
     oldPassword,
     password,
   }: IRequestDTO): Promise<UserEntity> {
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(user_id);
     console.log(user);
 
     if (!user) {
@@ -38,7 +38,7 @@ class UpdateProfileService {
 
     const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
 
-    if (userWithUpdatedEmail && userWithUpdatedEmail.id !== userId) {
+    if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user_id) {
       throw new AppError(
         'This e-mail already exists, please choose another email.',
       );

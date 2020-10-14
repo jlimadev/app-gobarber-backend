@@ -3,7 +3,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { inject, injectable } from 'tsyringe';
 
 interface IRequestDTO {
-  userId: string;
+  user_id: string;
 }
 
 @injectable()
@@ -13,9 +13,9 @@ class ListProvidersService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ userId }: IRequestDTO): Promise<UserEntity[]> {
+  public async execute({ user_id }: IRequestDTO): Promise<UserEntity[]> {
     const user = await this.usersRepository.findAllProviders({
-      excepetUserId: userId,
+      excepetUserId: user_id,
     });
 
     return user;

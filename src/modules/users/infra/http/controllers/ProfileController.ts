@@ -10,7 +10,7 @@ class ProfileController {
 
     const showProfile = container.resolve(ShowProfileService);
 
-    const user = await showProfile.execute({ userId: id });
+    const user = await showProfile.execute({ user_id: id });
 
     delete user.password;
 
@@ -25,7 +25,7 @@ class ProfileController {
       const createUserService = container.resolve(UpdateProfileService);
 
       const user = await createUserService.execute({
-        userId: id,
+        user_id: id,
         name,
         email,
         oldPassword,

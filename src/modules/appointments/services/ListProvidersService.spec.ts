@@ -32,7 +32,7 @@ describe('ListProviders', () => {
     });
 
     const providers = await listProviders.execute({
-      userId: loggedUser.id,
+      user_id: loggedUser.id,
     });
 
     expect(providers).toEqual([firstUser, secondUser]);

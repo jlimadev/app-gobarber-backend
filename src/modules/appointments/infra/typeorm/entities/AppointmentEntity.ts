@@ -14,11 +14,18 @@ class AppointmentEntity {
   id: string;
 
   @Column()
-  providerId: string;
+  provider_id: string;
 
   @ManyToOne(() => UserEntity)
   @JoinColumn({ name: 'provider_id' })
   provider: UserEntity;
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: 'user_id' })
+  user: UserEntity;
 
   @Column('time with time zone')
   date: Date;

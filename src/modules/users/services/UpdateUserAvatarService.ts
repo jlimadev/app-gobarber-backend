@@ -5,7 +5,7 @@ import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequestDTO {
-  userId: string;
+  user_id: string;
   avatarFilename: string;
 }
 
@@ -20,10 +20,10 @@ class UpdateUserAvatarService {
   ) {}
 
   public async execute({
-    userId,
+    user_id,
     avatarFilename,
   }: IRequestDTO): Promise<UserEntity> {
-    const user = await this.usersRepository.findById(userId);
+    const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError(
