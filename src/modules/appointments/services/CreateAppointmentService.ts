@@ -1,4 +1,4 @@
-import { startOfHour } from 'date-fns';
+import { startOfHour, isBefore } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 import AppointmentEntity from '@modules/appointments/infra/typeorm/entities/AppointmentEntity';
 import AppError from '@shared/errors/AppError';
@@ -23,6 +23,10 @@ class CreateAppointmentService {
     date,
   }: IRequestDTO): Promise<AppointmentEntity> {
     const appointmentDate = startOfHour(date);
+
+    if (isBefore(appointmentDate, Date.now())) {
+      throw new AppError('You cannot book in a past date');
+    }
 
     const appointmentExists = await this.appointmentsRepository.findByDate(
       appointmentDate,
