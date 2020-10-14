@@ -63,4 +63,22 @@ describe('CreateAppointment', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('Should not be able to create an appointment before 8a.m and after 17p.m', async () => {
+    await expect(
+      createAppointment.execute({
+        date: new Date(2020, 4, 11, 7),
+        provider_id: 'anyProviderId',
+        user_id: 'anyUserId',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+
+    await expect(
+      createAppointment.execute({
+        date: new Date(2020, 4, 11, 18),
+        provider_id: 'anyProviderId',
+        user_id: 'anyUserId',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
