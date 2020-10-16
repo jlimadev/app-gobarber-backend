@@ -1,6 +1,6 @@
 import ShowProfileService from '@modules/users/services/ShowProfileService';
 import UpdateProfileService from '@modules/users/services/UpdateProfileService';
-import { hash } from 'bcryptjs';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -12,9 +12,7 @@ class ProfileController {
 
     const user = await showProfile.execute({ user_id: id });
 
-    delete user.password;
-
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -32,9 +30,7 @@ class ProfileController {
         password,
       });
 
-      delete user.password;
-
-      return response.send(user);
+      return response.send(classToClass(user));
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

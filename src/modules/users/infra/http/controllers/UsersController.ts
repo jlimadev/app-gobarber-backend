@@ -1,5 +1,6 @@
 import CreateUserService from '@modules/users/services/CreateUserService';
 import { hash } from 'bcryptjs';
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -18,9 +19,7 @@ class UsersController {
         password: hashedPassword,
       });
 
-      delete user.password;
-
-      return response.send(user);
+      return response.send(classToClass(user));
     } catch (err) {
       return response.status(400).json({ error: err.message });
     }

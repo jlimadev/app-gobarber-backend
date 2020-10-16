@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add -D @types/celebrate
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add -D @types/class-transformer
 
 PATH: 
   C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\t77rvt8\bin;C:\Python38\Scripts;C:\Python38;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\PROGRA~1\IBM\SQLLIB\BIN;C:\PROGRA~1\IBM\SQLLIB\FUNCTION;C:\PROGRA~1\IBM\SQLLIB\SAMPLES\REPL;C:\Program Files\CrashPlan\jre\bin\server;C:\Program Files\CrashPlan\jre\bin;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_31\bin;C:\Users\t77rvt8\Anaconda3;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Plantronics\Spokes3G;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\ProgramData\nvm;C:\Program Files\nodejs;C:\Android\SDK\emulator;C:\Android\SDK\tools;C:\Android\SDK\tools\bin;C:\Android\SDK\platform-tools;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\t77rvt8\AppData\Local\Microsoft\WindowsApps;C:\Users\t77rvt8\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\t77rvt8\AppData\Roaming\npm;C:\Users\t77rvt8\AppData\Local\Yarn\bin;C:\Users\t77rvt8\AppData\Local\hyper\app-3.0.2\resources\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fcelebrate: Not found
+  Error: https://registry.yarnpkg.com/@types%2fclass-transformer: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66096:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
       at Request.emit (events.js:315:20)
@@ -40,12 +40,13 @@ npm manifest:
       "test": "jest"
     },
     "dependencies": {
-      "@types/mongodb": "^3.5.27",
       "bcryptjs": "^2.4.3",
       "celebrate": "^13.0.3",
+      "class-transformer": "^0.3.1",
       "cors": "^2.8.5",
       "crypto": "^1.0.1",
       "date-fns": "^2.15.0",
+      "dotenv": "^8.2.0",
       "express": "^4.17.1",
       "express-async-errors": "^3.1.1",
       "handlebars": "^4.7.6",
@@ -64,8 +65,10 @@ npm manifest:
       "@types/bcryptjs": "^2.4.2",
       "@types/cors": "^2.8.7",
       "@types/express": "^4.17.7",
+      "@types/hapi__joi": "^17.1.6",
       "@types/jest": "^26.0.14",
       "@types/jsonwebtoken": "^8.5.0",
+      "@types/mongodb": "^3.5.27",
       "@types/multer": "^1.4.4",
       "@types/nodemailer": "^6.4.0",
       "@types/uuid": "^8.3.0",
@@ -704,6 +707,11 @@ Lockfile:
     integrity sha512-AiHRaEB50LQg0pZmm659vNBb9f4SJ0qrAnteuzhSeAUcJKxoYgEnprg/83kppCnc2zvtCKbdZry1a5pVY3lOTQ==
     dependencies:
       "@types/node" "*"
+  
+  "@types/hapi__joi@^17.1.6":
+    version "17.1.6"
+    resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.6.tgz#b84663676aa9753c17183718338dd40ddcbd3754"
+    integrity sha512-y3A1MzNC0FmzD5+ys59RziE1WqKrL13nxtJgrSzjoO7boue5B7zZD2nZLPwrSuUviFjpKFQtgHYSvhDGfIE4jA==
   
   "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
     version "2.0.3"
@@ -1473,6 +1481,11 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-2.0.0.tgz#67a9e964be31a51e15e5010d58e6f12834002f46"
     integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
+  
+  class-transformer@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.3.1.tgz#ee681a5439ff2230fc57f5056412d3befa70d597"
+    integrity sha512-cKFwohpJbuMovS8xVLmn8N2AUbAuc8pVo4zEfsUVo8qgECOogns1WVk/FkOZoxhOPTyTYFckuoH+13FO+MQ8GA==
   
   class-utils@^0.3.5:
     version "0.3.6"
