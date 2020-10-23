@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
+import { classToClass } from 'class-transformer';
 
 @Entity('appointments')
 class AppointmentEntity {
@@ -23,7 +24,7 @@ class AppointmentEntity {
   @Column()
   user_id: string;
 
-  @ManyToOne(() => UserEntity)
+  @ManyToOne(() => classToClass(UserEntity))
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
