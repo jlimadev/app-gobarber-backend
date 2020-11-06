@@ -1,4 +1,5 @@
 import UserEntity from '@modules/users/infra/typeorm/entities/UserEntity';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProviders';
 import AppError from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
@@ -17,6 +18,9 @@ class UpdateUserAvatarService {
 
     @inject('StorageProvider')
     private storageProvider: IStorageProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -41,6 +45,8 @@ class UpdateUserAvatarService {
     user.avatar = fileName;
 
     await this.usersRepository.save(user);
+
+    await this.cacheProvider.invalidatePrefix('providers-list');
 
     return user;
   }
